@@ -1,0 +1,83 @@
+$colorD: #333;
+$colorL: #fff;
+$colorM: #567;
+$font-size:1em;
+
+body{
+    margin: 0;
+    font-family: Arial;
+    background-color: $colorD;
+}
+
+ul li::before{
+    content:"\25EF";
+    color: transparent;
+    width: 1em;
+    height: 1em;
+    border: 2px solid #555;
+    border-radius: 100%;
+    background-image: linear-gradient(90deg, lighten($colorM, 20%), darken($colorM, 20%));
+    position: relative;
+    top: -3.7em;
+}
+
+
+ul{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    margin: auto;
+    top: 10em; right: 0; bottom: 0; left: 0;
+    width: 0;
+    height: 0;
+
+    li{
+        // color: darken($colorL, 5%);
+        font-size: $font-size;
+        position: absolute;
+
+        padding: 1em;
+        width: 33em;
+        display: flex;
+        flex-direction: column-reverse;
+    
+        border-radius: 100% 5em 5em 100%;
+        transform-origin: 4% center;
+        transition: 1s;
+
+
+        @for $n from 1 through 12 {
+            &:nth-child(#{$n}){
+                transform: rotate(0deg * $n);
+                background: linear-gradient(darken($colorM, 20%), lighten($colorM, 20%), darken($colorM, 20%)); 
+                // background-color: lighten($colorM,$n * 3%);
+                border: 0.03em solid lighten($colorM, $n * 2%);
+                box-shadow: 2px 2px 5px darken($colorD, 70%);
+            }
+        }
+
+        h2{
+            align-self: flex-end;
+            position: relative;
+            right: 1em;
+        }
+
+        p{
+            position: relative;
+            top: 1em;
+            left: 3.5em;
+        }
+    }
+
+    &:hover{
+        @for $n from 1 through 12 {
+            &>li:nth-child(#{$n}){
+               transform: rotate(-13.7deg * $n); 
+            }
+        }
+    } 
+}
+
+
+
+
